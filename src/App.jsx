@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import portAlberniReference from "./assets/images/port-alberni-reference.png";
+import portalLogo from './assets/images/PortPortal_Centre_Logo_Circle.png';
 
 const destinations = [
   {
@@ -52,7 +53,7 @@ function App() {
 
           <div className="portal-center">
             <img
-              src="/port-portal.github.io/src/assets/images/PortPortal_Centre_Logo_Circle.png"
+              src={portalLogo}
               alt="Port Alberni Community Portal"
               className="portal-logo"
             />
