@@ -40,11 +40,6 @@ function App() {
       <div className="portal-overlay" />
 
       <section className="portal-stage">
-
-        <div className="portal-intro">
-          <span>PORT ALBERNI</span>
-        </div>
-
         <div className={`portal-wheel ${activeDestination ? "active" : ""}`}>
 
           <div className="growth-ring ring-outer" />
