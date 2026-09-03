@@ -81,59 +81,117 @@
   filter: brightness(0.65);
 }
 
-/* Growth rings */
+/* =========================================
+   CEDAR GROWTH RING PORTAL
+   ========================================= */
+
+.portal-wheel {
+  position: relative;
+
+  width: min(70vw, 680px);
+  height: min(70vw, 680px);
+
+  min-width: 420px;
+  min-height: 420px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 700ms ease,
+    filter 700ms ease;
+}
+
+/* Individual cedar rings */
 
 .growth-ring {
   position: absolute;
 
   border-radius: 50%;
 
-  border: 8px solid rgba(126, 83, 43, 0.85);
+  background:
+    radial-gradient(
+      circle,
+      transparent 57%,
+      rgba(78, 45, 25, 0.95) 58%,
+      rgba(155, 105, 57, 0.9) 59%,
+      rgba(89, 51, 28, 0.95) 61%,
+      transparent 62%
+    );
 
   box-shadow:
-    inset 0 0 0 3px rgba(235, 194, 123, 0.15),
-    inset 0 0 0 12px rgba(62, 38, 22, 0.45),
+    inset 0 0 20px rgba(35, 20, 10, 0.45),
     0 12px 35px rgba(0, 0, 0, 0.35);
 
   transition:
-    transform 500ms ease,
-    border-color 300ms ease;
+    transform 700ms ease,
+    filter 500ms ease;
 }
+
+/* Outer growth ring */
 
 .ring-outer {
   width: 100%;
   height: 100%;
+
+  border: 12px solid rgba(89, 54, 29, 0.95);
+
+  box-shadow:
+    inset 0 0 0 3px rgba(202, 154, 92, 0.35),
+    inset 0 0 30px rgba(30, 18, 10, 0.5),
+    0 18px 45px rgba(0, 0, 0, 0.45);
 }
+
+/* Middle growth ring */
 
 .ring-middle {
   width: 78%;
   height: 78%;
+
+  border: 9px solid rgba(111, 67, 34, 0.95);
+
+  box-shadow:
+    inset 0 0 0 2px rgba(205, 157, 91, 0.3),
+    inset 0 0 25px rgba(30, 18, 10, 0.45);
 }
+
+/* Inner growth ring */
 
 .ring-inner {
-  width: 55%;
-  height: 55%;
+  width: 56%;
+  height: 56%;
+
+  border: 7px solid rgba(128, 79, 40, 0.95);
+
+  box-shadow:
+    inset 0 0 0 2px rgba(218, 170, 101, 0.3),
+    inset 0 0 20px rgba(25, 15, 8, 0.5);
 }
 
+/* Gentle organic movement */
+
 .portal-wheel:hover .ring-outer {
-  transform: scale(1.015);
+  transform: scale(1.012) rotate(0.4deg);
 }
 
 .portal-wheel:hover .ring-middle {
-  transform: scale(1.025);
+  transform: scale(1.018) rotate(-0.3deg);
 }
 
 .portal-wheel:hover .ring-inner {
-  transform: scale(1.035);
+  transform: scale(1.025) rotate(0.25deg);
 }
 
-/* Centre */
+/* =========================================
+   PORTAL CENTRE
+   ========================================= */
 
 .portal-center {
   position: absolute;
 
-  width: 45%;
-  height: 45%;
+  width: 44%;
+  height: 44%;
 
   border-radius: 50%;
 
@@ -144,99 +202,171 @@
 
   background:
     radial-gradient(
-      circle,
-      #172f2f 0%,
-      #102324 65%,
-      #091718 100%
+      circle at 45% 40%,
+      #9b7044 0%,
+      #76502f 35%,
+      #4e321f 70%,
+      #291b12 100%
     );
 
-  border: 5px solid #8a6038;
+  border: 8px solid #5b3820;
 
   box-shadow:
-    0 15px 45px rgba(0, 0, 0, 0.5),
-    inset 0 0 30px rgba(0, 0, 0, 0.5);
+    inset 0 0 0 3px rgba(218, 170, 101, 0.25),
+    inset 0 0 45px rgba(25, 14, 7, 0.6),
+    0 15px 45px rgba(0, 0, 0, 0.55);
+
+  z-index: 5;
+
+  overflow: hidden;
+}
+
+/* Subtle wood texture */
+
+.portal-center::before {
+  content: "";
+
+  position: absolute;
+  inset: -20%;
+
+  border-radius: 50%;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      transparent 0,
+      transparent 8px,
+      rgba(35, 20, 10, 0.12) 9px,
+      transparent 12px
+    );
+
+  opacity: 0.7;
+
+  pointer-events: none;
+}
+
+.portal-title,
+.portal-subtitle {
+  position: relative;
+  z-index: 2;
 }
 
 .portal-title {
   font-family: Georgia, serif;
 
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
 
-  line-height: 0.9;
+  line-height: 0.88;
+
   letter-spacing: 0.08em;
+
+  text-shadow:
+    0 3px 5px rgba(0, 0, 0, 0.45);
 }
 
 .portal-subtitle {
   margin-top: 18px;
 
   font-size: 0.55rem;
+
   letter-spacing: 0.3em;
 
-  opacity: 0.65;
+  opacity: 0.7;
 }
 
-/* Navigation buttons */
+/* =========================================
+   PORTAL DESTINATIONS
+   ========================================= */
 
 .portal-button {
   position: absolute;
 
+  z-index: 10;
+
   border: 0;
 
-  padding: 14px 28px;
+  padding: 15px 26px;
 
   font-family: Georgia, serif;
-  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
 
-  letter-spacing: 0.12em;
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+
+  letter-spacing: 0.16em;
+
   text-transform: uppercase;
 
-  color: #f4ead7;
+  color: #f5ead5;
 
-  background:
-    linear-gradient(
-      145deg,
-      #8a6038,
-      #5d3d26
-    );
+  background: rgba(54, 34, 20, 0.78);
 
-  border: 2px solid rgba(239, 203, 139, 0.6);
+  border: 1px solid rgba(215, 170, 101, 0.55);
 
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.35);
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    inset 0 0 12px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
 
+  backdrop-filter: blur(2px);
+
   transition:
-    transform 250ms ease,
-    filter 250ms ease,
-    box-shadow 250ms ease;
+    transform 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease,
+    letter-spacing 300ms ease;
 }
 
 .portal-button:hover {
-  transform: scale(1.08);
+  background: rgba(126, 83, 43, 0.95);
 
-  filter: brightness(1.2);
+  letter-spacing: 0.2em;
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.45),
-    0 0 20px rgba(224, 181, 107, 0.25);
+    0 8px 25px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(220, 178, 105, 0.25);
+
+  transform: scale(1.08);
 }
 
 .portal-button.top {
-  top: 2%;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .portal-button.bottom {
-  bottom: 2%;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .portal-button.left {
-  left: -4%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .portal-button.right {
-  right: -4%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.portal-button.top:hover {
+  transform: translateX(-50%) scale(1.08);
+}
+
+.portal-button.bottom:hover {
+  transform: translateX(-50%) scale(1.08);
+}
+
+.portal-button.left:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portal-button.right:hover {
+  transform: translateY(-50%) scale(1.08);
 }
 
 /* Message */
