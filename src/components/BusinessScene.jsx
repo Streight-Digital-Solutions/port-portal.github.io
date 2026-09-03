@@ -1,47 +1,73 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 const categories = [
-  'Food & Drink',
-  'Retail',
-  'Services',
-  'Trades',
-  'Professional',
-  'Health & Wellness',
-]
+  "All",
+  "Food & Drink",
+  "Retail",
+  "Services",
+  "Trades",
+  "Professional",
+  "Health & Wellness",
+];
 
 const businesses = [
   {
-    name: 'Featured Local Business',
-    category: 'Services',
-    description: 'A local business serving the Port Alberni community.',
+    name: "Featured Local Business",
+    category: "Services",
+    description:
+      "A local business serving the Port Alberni community.",
+    featured: true,
   },
   {
-    name: 'Example Business',
-    category: 'Food & Drink',
-    description: 'Local food, coffee, and community.',
+    name: "Example Business",
+    category: "Food & Drink",
+    description:
+      "Local food, coffee, and community.",
   },
   {
-    name: 'Example Business',
-    category: 'Retail',
-    description: 'Locally owned shopping and services.',
+    name: "Example Business",
+    category: "Retail",
+    description:
+      "Locally owned shopping and services.",
   },
-]
+  {
+    name: "Example Business",
+    category: "Trades",
+    description:
+      "Skilled local trades serving the Alberni Valley.",
+  },
+  {
+    name: "Example Business",
+    category: "Professional",
+    description:
+      "Professional services from local businesses.",
+  },
+  {
+    name: "Example Business",
+    category: "Health & Wellness",
+    description:
+      "Health, wellness, and personal care in the community.",
+  },
+];
 
-export default function BusinessScene({ onBack }) {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [search, setSearch] = useState('')
+function BusinessScene({ onBack }) {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [search, setSearch] = useState("");
 
   const filteredBusinesses = businesses.filter((business) => {
     const matchesCategory =
-      activeCategory === 'All' ||
-      business.category === activeCategory
+      activeCategory === "All" ||
+      business.category === activeCategory;
+
+    const searchText = search.toLowerCase();
 
     const matchesSearch =
-      business.name.toLowerCase().includes(search.toLowerCase()) ||
-      business.category.toLowerCase().includes(search.toLowerCase())
+      business.name.toLowerCase().includes(searchText) ||
+      business.category.toLowerCase().includes(searchText) ||
+      business.description.toLowerCase().includes(searchText);
 
-    return matchesCategory && matchesSearch
-  })
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <section className="business-scene">
@@ -76,7 +102,9 @@ export default function BusinessScene({ onBack }) {
             type="search"
             placeholder="Search local businesses..."
             value={search}
-            onChange={(event) => setSearch(event.target.value)}
+            onChange={(event) =>
+              setSearch(event.target.value)
+            }
           />
         </div>
 
@@ -84,18 +112,17 @@ export default function BusinessScene({ onBack }) {
           className="business-categories"
           aria-label="Business categories"
         >
-          <button
-            className={activeCategory === 'All' ? 'active' : ''}
-            onClick={() => setActiveCategory('All')}
-          >
-            All
-          </button>
-
           {categories.map((category) => (
             <button
               key={category}
-              className={activeCategory === category ? 'active' : ''}
-              onClick={() => setActiveCategory(category)}
+              className={
+                activeCategory === category
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                setActiveCategory(category)
+              }
             >
               {category}
             </button>
@@ -103,63 +130,104 @@ export default function BusinessScene({ onBack }) {
         </nav>
 
         <section className="featured-business">
+
           <div className="featured-business-art">
             <span>FEATURED</span>
           </div>
 
           <div className="featured-business-content">
-            <span>LOCAL SPOTLIGHT</span>
+
+            <span className="business-label">
+              LOCAL SPOTLIGHT
+            </span>
 
             <h2>
-              Advertise your business here
+              Put your business in the spotlight.
             </h2>
 
             <p>
-              Put your business in front of people exploring
-              Port Alberni.
+              Featured advertising gives local businesses
+              a prominent place inside PortPortal.
             </p>
 
-            <button>
+            <button className="business-action">
               Learn More
             </button>
+
           </div>
+
         </section>
 
         <section className="business-directory">
 
           <div className="directory-heading">
-            <span>EXPLORE</span>
-            <h2>Businesses in Port Alberni</h2>
+
+            <span className="business-label">
+              EXPLORE
+            </span>
+
+            <h2>
+              Businesses in Port Alberni
+            </h2>
+
           </div>
 
           <div className="business-grid">
-            {filteredBusinesses.map((business) => (
+
+            {filteredBusinesses.map((business, index) => (
+
               <article
-                className="business-card"
-                key={business.name}
+                className={
+                  business.featured
+                    ? "business-card business-card-featured"
+                    : "business-card"
+                }
+                key={`${business.name}-${index}`}
               >
+
                 <div className="business-card-art">
-                  <span>{business.category}</span>
+                  <span>
+                    {business.category}
+                  </span>
                 </div>
 
                 <div className="business-card-content">
-                  <h3>{business.name}</h3>
+
+                  <h3>
+                    {business.name}
+                  </h3>
 
                   <p>
                     {business.description}
                   </p>
 
-                  <button>
+                  <button className="business-card-button">
                     View Business
                   </button>
+
                 </div>
+
               </article>
+
             ))}
+
           </div>
+
+          {filteredBusinesses.length === 0 && (
+            <div className="business-empty">
+              <h3>No businesses found</h3>
+              <p>
+                Try another search or category.
+              </p>
+            </div>
+          )}
 
         </section>
 
       </div>
+
     </section>
-  )
+  );
 }
+
+export default BusinessScene;

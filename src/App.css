@@ -448,3 +448,1223 @@
 .portal-footer p {
   margin: 2px 0;
 }
+
+
+/* =========================================
+   BUSINESS SCENE
+   ========================================= */
+
+.business-scene {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(78, 120, 105, 0.28),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #102f31 0%,
+      #0c2527 48%,
+      #091b1d 100%
+    );
+  color: #f4ead7;
+}
+
+.business-scene::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 80px,
+      rgba(218, 170, 101, 0.08) 81px,
+      transparent 82px
+    );
+}
+
+.business-scene-inner {
+  position: relative;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 110px 0 100px;
+}
+
+/* -----------------------------------------
+   BACK BUTTON
+   ----------------------------------------- */
+
+.scene-back {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  z-index: 100;
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(244, 234, 215, 0.35);
+
+  background: rgba(8, 28, 29, 0.72);
+  color: #f4ead7;
+
+  font-family: Georgia, serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    background 250ms ease,
+    transform 250ms ease,
+    border-color 250ms ease;
+}
+
+.scene-back:hover {
+  background: rgba(126, 83, 43, 0.8);
+  border-color: rgba(215, 170, 101, 0.7);
+  transform: translateX(-3px);
+}
+
+/* -----------------------------------------
+   HEADING
+   ----------------------------------------- */
+
+.business-heading {
+  max-width: 760px;
+  margin-bottom: 38px;
+}
+
+.business-kicker,
+.business-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #d5ae6b;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.business-heading h1 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.92;
+  font-weight: 700;
+
+  letter-spacing: -0.035em;
+}
+
+.business-heading p {
+  max-width: 620px;
+  margin: 24px 0 0;
+
+  color: rgba(244, 234, 215, 0.75);
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* -----------------------------------------
+   SEARCH
+   ----------------------------------------- */
+
+.business-search {
+  margin-bottom: 20px;
+}
+
+.business-search input {
+  width: 100%;
+  padding: 18px 22px;
+
+  border: 1px solid rgba(244, 234, 215, 0.22);
+  border-radius: 2px;
+
+  outline: none;
+
+  background: rgba(5, 20, 21, 0.55);
+  color: #f4ead7;
+
+  font-size: 1rem;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.business-search input::placeholder {
+  color: rgba(244, 234, 215, 0.45);
+}
+
+.business-search input:focus {
+  border-color: rgba(215, 170, 101, 0.7);
+  background: rgba(5, 20, 21, 0.75);
+}
+
+/* -----------------------------------------
+   CATEGORIES
+   ----------------------------------------- */
+
+.business-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 46px;
+}
+
+.business-categories button {
+  padding: 9px 15px;
+
+  border: 1px solid rgba(244, 234, 215, 0.2);
+
+  background: transparent;
+  color: rgba(244, 234, 215, 0.72);
+
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+.business-categories button:hover,
+.business-categories button.active {
+  border-color: rgba(215, 170, 101, 0.65);
+  background: rgba(126, 83, 43, 0.55);
+  color: #f4ead7;
+}
+
+/* -----------------------------------------
+   FEATURED BUSINESS
+   ----------------------------------------- */
+
+.featured-business {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+
+  min-height: 390px;
+
+  margin-bottom: 80px;
+
+  border: 1px solid rgba(215, 170, 101, 0.3);
+
+  background: rgba(8, 27, 28, 0.65);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.28);
+}
+
+.featured-business-art {
+  position: relative;
+
+  min-height: 300px;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(215, 170, 101, 0.2),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(126, 83, 43, 0.65),
+      rgba(22, 63, 60, 0.85)
+    );
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 28px;
+}
+
+.featured-business-art::after {
+  content: "";
+
+  position: absolute;
+  inset: 20px;
+
+  border: 1px solid rgba(244, 234, 215, 0.2);
+
+  pointer-events: none;
+}
+
+.featured-business-art span {
+  position: relative;
+  z-index: 2;
+
+  padding: 7px 10px;
+
+  background: rgba(5, 20, 21, 0.7);
+
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+}
+
+.featured-business-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: clamp(30px, 5vw, 65px);
+}
+
+.featured-business-content h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.featured-business-content p {
+  max-width: 430px;
+
+  margin: 22px 0 30px;
+
+  color: rgba(244, 234, 215, 0.7);
+
+  line-height: 1.7;
+}
+
+.business-action {
+  align-self: flex-start;
+
+  padding: 12px 20px;
+
+  border: 1px solid rgba(215, 170, 101, 0.55);
+
+  background: rgba(126, 83, 43, 0.6);
+  color: #f4ead7;
+
+  font-family: Georgia, serif;
+  letter-spacing: 0.1em;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.business-action:hover {
+  background: rgba(126, 83, 43, 0.9);
+  transform: translateY(-2px);
+}
+
+/* -----------------------------------------
+   DIRECTORY
+   ----------------------------------------- */
+
+.directory-heading {
+  margin-bottom: 28px;
+}
+
+.directory-heading h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* -----------------------------------------
+   BUSINESS GRID
+   ----------------------------------------- */
+
+.business-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.business-card {
+  overflow: hidden;
+
+  border: 1px solid rgba(244, 234, 215, 0.14);
+
+  background: rgba(7, 25, 26, 0.68);
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.business-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(215, 170, 101, 0.45);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.business-card-art {
+  min-height: 170px;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(126, 83, 43, 0.45),
+      rgba(20, 65, 63, 0.8)
+    );
+}
+
+.business-card-art span {
+  padding: 6px 9px;
+
+  background: rgba(5, 20, 21, 0.72);
+
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.business-card-content {
+  padding: 24px;
+}
+
+.business-card-content h3 {
+  margin: 0 0 10px;
+
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+}
+
+.business-card-content p {
+  min-height: 48px;
+
+  margin: 0 0 22px;
+
+  color: rgba(244, 234, 215, 0.65);
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.business-card-button {
+  padding: 9px 14px;
+
+  border: 1px solid rgba(244, 234, 215, 0.25);
+
+  background: transparent;
+  color: #f4ead7;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.business-card-button:hover {
+  background: rgba(126, 83, 43, 0.55);
+  border-color: rgba(215, 170, 101, 0.55);
+}
+
+/* -----------------------------------------
+   EMPTY SEARCH
+   ----------------------------------------- */
+
+.business-empty {
+  padding: 60px 20px;
+
+  text-align: center;
+
+  border: 1px solid rgba(244, 234, 215, 0.12);
+}
+
+.business-empty h3 {
+  margin: 0 0 8px;
+
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+}
+
+.business-empty p {
+  margin: 0;
+
+  color: rgba(244, 234, 215, 0.6);
+}
+
+/* -----------------------------------------
+   BUSINESS MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 850px) {
+
+  .business-scene-inner {
+    width: min(100% - 30px, 700px);
+    padding-top: 90px;
+  }
+
+  .featured-business {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-business-art {
+    min-height: 240px;
+  }
+
+  .business-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .scene-back {
+    top: 16px;
+    left: 16px;
+  }
+
+  .business-scene-inner {
+    width: calc(100% - 24px);
+    padding-top: 78px;
+    padding-bottom: 90px;
+  }
+
+  .business-heading h1 {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+  }
+
+  .business-heading p {
+    font-size: 0.9rem;
+  }
+
+  .business-categories {
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .business-categories button {
+    padding: 8px 11px;
+    font-size: 0.65rem;
+  }
+
+  .featured-business-content {
+    padding: 30px 24px;
+  }
+
+  .business-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* =========================================
+   EVENTS SCENE
+   ========================================= */
+
+.events-scene {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(78, 120, 105, 0.28),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #102f31 0%,
+      #0c2527 50%,
+      #091b1d 100%
+    );
+
+  color: #f4ead7;
+}
+
+.events-scene-inner {
+  position: relative;
+
+  width: min(1120px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 110px 0 120px;
+}
+
+/* -----------------------------------------
+   HEADING
+   ----------------------------------------- */
+
+.events-heading {
+  max-width: 780px;
+
+  margin-bottom: 38px;
+}
+
+.events-kicker,
+.events-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #d5ae6b;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.28em;
+
+  text-transform: uppercase;
+}
+
+.events-heading h1 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+
+  line-height: 0.92;
+
+  letter-spacing: -0.035em;
+}
+
+.events-heading p {
+  max-width: 650px;
+
+  margin: 24px 0 0;
+
+  color: rgba(244, 234, 215, 0.72);
+
+  font-size: 1.05rem;
+
+  line-height: 1.7;
+}
+
+/* -----------------------------------------
+   SEARCH
+   ----------------------------------------- */
+
+.events-toolbar {
+  margin-bottom: 18px;
+}
+
+.events-search input {
+  width: 100%;
+
+  padding: 18px 22px;
+
+  border: 1px solid rgba(244, 234, 215, 0.22);
+
+  outline: none;
+
+  background: rgba(5, 20, 21, 0.55);
+
+  color: #f4ead7;
+
+  font-size: 1rem;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.events-search input::placeholder {
+  color: rgba(244, 234, 215, 0.45);
+}
+
+.events-search input:focus {
+  border-color: rgba(215, 170, 101, 0.7);
+
+  background: rgba(5, 20, 21, 0.75);
+}
+
+/* -----------------------------------------
+   CATEGORIES
+   ----------------------------------------- */
+
+.events-categories {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 45px;
+}
+
+.events-categories button {
+  padding: 9px 15px;
+
+  border: 1px solid rgba(244, 234, 215, 0.2);
+
+  background: transparent;
+
+  color: rgba(244, 234, 215, 0.72);
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+.events-categories button:hover,
+.events-categories button.active {
+  border-color: rgba(215, 170, 101, 0.65);
+
+  background: rgba(126, 83, 43, 0.55);
+
+  color: #f4ead7;
+}
+
+/* -----------------------------------------
+   CALENDAR HEADER
+   ----------------------------------------- */
+
+.events-calendar {
+  margin-bottom: 70px;
+}
+
+.events-calendar-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.events-calendar-header h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.calendar-controls {
+  display: flex;
+
+  gap: 8px;
+}
+
+.calendar-controls button {
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(244, 234, 215, 0.25);
+
+  background: rgba(5, 20, 21, 0.45);
+
+  color: #f4ead7;
+
+  font-size: 1.1rem;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.calendar-controls button:hover {
+  border-color: rgba(215, 170, 101, 0.65);
+
+  background: rgba(126, 83, 43, 0.55);
+}
+
+/* -----------------------------------------
+   EVENT LIST
+   ----------------------------------------- */
+
+.events-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.event-card {
+  display: grid;
+
+  grid-template-columns: 90px 180px 1fr 40px;
+
+  align-items: stretch;
+
+  min-height: 160px;
+
+  border: 1px solid rgba(244, 234, 215, 0.13);
+
+  background: rgba(7, 25, 26, 0.68);
+
+  cursor: pointer;
+
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    background 250ms ease;
+}
+
+.event-card:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(215, 170, 101, 0.45);
+
+  background: rgba(12, 39, 40, 0.8);
+}
+
+/* -----------------------------------------
+   EVENT DATE
+   ----------------------------------------- */
+
+.event-date {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 15px;
+
+  border-right: 1px solid rgba(244, 234, 215, 0.1);
+
+  text-align: center;
+}
+
+.event-date span {
+  color: #d5ae6b;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.15em;
+}
+
+.event-date strong {
+  margin: 3px 0;
+
+  font-family: Georgia, serif;
+
+  font-size: 2.6rem;
+
+  line-height: 1;
+}
+
+.event-date small {
+  color: rgba(244, 234, 215, 0.5);
+
+  font-size: 0.6rem;
+
+  letter-spacing: 0.1em;
+}
+
+/* -----------------------------------------
+   EVENT ART
+   ----------------------------------------- */
+
+.event-art {
+  position: relative;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  padding: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(126, 83, 43, 0.48),
+      rgba(20, 65, 63, 0.82)
+    );
+}
+
+.event-art span {
+  padding: 6px 9px;
+
+  background: rgba(5, 20, 21, 0.72);
+
+  font-size: 0.6rem;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+/* -----------------------------------------
+   EVENT INFORMATION
+   ----------------------------------------- */
+
+.event-information {
+  padding: 24px 26px;
+}
+
+.event-information h3 {
+  margin: 0 0 8px;
+
+  font-family: Georgia, serif;
+
+  font-size: 1.45rem;
+}
+
+.event-location,
+.event-time {
+  margin: 3px 0;
+
+  color: rgba(244, 234, 215, 0.6);
+
+  font-size: 0.8rem;
+}
+
+.event-description {
+  max-width: 600px;
+
+  margin: 14px 0 0;
+
+  color: rgba(244, 234, 215, 0.68);
+
+  font-size: 0.85rem;
+
+  line-height: 1.55;
+}
+
+/* -----------------------------------------
+   EVENT ARROW
+   ----------------------------------------- */
+
+.event-arrow {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #d5ae6b;
+
+  font-size: 1.3rem;
+}
+
+/* -----------------------------------------
+   SUBMIT EVENT
+   ----------------------------------------- */
+
+.event-submit {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 42px;
+
+  border: 1px solid rgba(215, 170, 101, 0.3);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(126, 83, 43, 0.22),
+      rgba(10, 40, 40, 0.55)
+    );
+}
+
+.event-submit h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.event-submit p {
+  max-width: 550px;
+
+  margin: 14px 0 0;
+
+  color: rgba(244, 234, 215, 0.65);
+
+  line-height: 1.6;
+}
+
+.event-submit > button {
+  flex-shrink: 0;
+
+  padding: 13px 20px;
+
+  border: 1px solid rgba(215, 170, 101, 0.55);
+
+  background: rgba(126, 83, 43, 0.65);
+
+  color: #f4ead7;
+
+  font-family: Georgia, serif;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+}
+
+.event-submit > button:hover {
+  background: rgba(126, 83, 43, 0.9);
+}
+
+/* -----------------------------------------
+   EVENT DETAIL OVERLAY
+   ----------------------------------------- */
+
+.event-detail-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(3, 15, 16, 0.78);
+
+  backdrop-filter: blur(10px);
+}
+
+.event-detail {
+  position: relative;
+
+  width: min(620px, 100%);
+
+  padding: clamp(30px, 5vw, 55px);
+
+  border: 1px solid rgba(215, 170, 101, 0.4);
+
+  background:
+    linear-gradient(
+      145deg,
+      #123738,
+      #091e20
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.event-detail h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(2rem, 5vw, 3.5rem);
+
+  line-height: 1;
+}
+
+.event-detail-date {
+  color: #d5ae6b;
+
+  letter-spacing: 0.1em;
+}
+
+.event-detail p {
+  color: rgba(244, 234, 215, 0.7);
+
+  line-height: 1.65;
+}
+
+.event-detail-close {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(244, 234, 215, 0.25);
+
+  background: transparent;
+
+  color: #f4ead7;
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+}
+
+.event-detail-action {
+  margin-top: 15px;
+
+  padding: 12px 18px;
+
+  border: 1px solid rgba(215, 170, 101, 0.55);
+
+  background: rgba(126, 83, 43, 0.6);
+
+  color: #f4ead7;
+
+  cursor: pointer;
+}
+
+/* -----------------------------------------
+   EMPTY STATE
+   ----------------------------------------- */
+
+.events-empty {
+  padding: 60px 20px;
+
+  border: 1px solid rgba(244, 234, 215, 0.12);
+
+  text-align: center;
+}
+
+.events-empty h3 {
+  margin: 0 0 8px;
+
+  font-family: Georgia, serif;
+}
+
+.events-empty p {
+  margin: 0;
+
+  color: rgba(244, 234, 215, 0.6);
+}
+
+/* -----------------------------------------
+   MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 800px) {
+
+  .events-scene-inner {
+    width: min(100% - 30px, 680px);
+
+    padding-top: 90px;
+  }
+
+  .event-card {
+    grid-template-columns: 75px 1fr 35px;
+  }
+
+  .event-art {
+    display: none;
+  }
+
+  .event-information {
+    padding: 20px;
+  }
+
+  .event-submit {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 30px;
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .events-scene-inner {
+    width: calc(100% - 24px);
+
+    padding-top: 78px;
+  }
+
+  .events-heading h1 {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+  }
+
+  .events-heading p {
+    font-size: 0.9rem;
+  }
+
+  .events-categories {
+    gap: 6px;
+
+    margin-bottom: 32px;
+  }
+
+  .events-categories button {
+    padding: 8px 11px;
+
+    font-size: 0.65rem;
+  }
+
+  .events-calendar-header {
+    align-items: center;
+  }
+
+  .events-calendar-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .calendar-controls button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .event-card {
+    grid-template-columns: 68px 1fr 30px;
+  }
+
+  .event-date strong {
+    font-size: 2rem;
+  }
+
+  .event-information h3 {
+    font-size: 1.15rem;
+  }
+
+  .event-description {
+    display: none;
+  }
+
+  .event-submit {
+    padding: 25px;
+  }
+
+}
