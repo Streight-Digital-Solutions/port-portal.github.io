@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import portAlberniReference from "./assets/images/port-alberni-reference.jpg";
+import portAlberniReference from "./assets/images/port-alberni-reference.png";
 
 const destinations = [
   {
