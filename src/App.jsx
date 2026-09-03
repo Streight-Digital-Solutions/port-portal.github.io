@@ -51,12 +51,11 @@ function App() {
           <div className="growth-ring ring-inner" />
 
           <div className="portal-center">
-            <span className="portal-title">PORT</span>
-            <span className="portal-title">ALBERNI</span>
-
-            <span className="portal-subtitle">
-              COMMUNITY PORTAL
-            </span>
+            <img
+              src="/port-portal.github.io/src/assets/images/PortPortal_Centre_Logo_Circle.png"
+              alt="Port Alberni Community Portal"
+              className="portal-logo"
+            />
           </div>
 
           {destinations.map((destination) => (
