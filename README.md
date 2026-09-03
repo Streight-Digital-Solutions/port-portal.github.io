@@ -16,12 +16,18 @@ The React Compiler is not enabled on this template because of its impact on dev 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-Copyright © 2026 Streight Digital Solutions.
-All rights reserved.
+Copyright © 2026 Streight Digital Solutions. All rights reserved.
 
-PortPortal and its original source code, artwork, branding, designs,
-and other original creative assets are proprietary unless otherwise
-stated.
+PortPortal is an independently developed digital community platform
+created and operated by Streight Digital Solutions.
 
-No permission is granted to reproduce, distribute, modify, or
-commercially reuse these materials without written permission.
+Unless otherwise stated, the original source code, website design,
+original artwork, graphics, written content, interface designs,
+and other original creative materials contained in this project
+are the property of Streight Digital Solutions.
+
+No licence is granted to copy, reproduce, modify, distribute,
+or commercially exploit these materials without written permission.
+
+Third-party libraries, frameworks, fonts, photographs, and other
+materials remain subject to their respective licences or ownership.

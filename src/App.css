@@ -465,3 +465,20 @@
     font-size: 0.55rem;
   }
 }
+
+.portal-footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 700px);
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  opacity: 0.75;
+  z-index: 20;
+}
+
+.portal-footer p {
+  margin: 0.25rem 0;
+}

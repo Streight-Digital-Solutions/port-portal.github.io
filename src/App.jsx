@@ -89,7 +89,15 @@ function App() {
         )}
 
       </section>
-
+      <footer className="portal-footer">
+        <p>
+          © 2026 Streight Digital Solutions. All rights reserved.
+        </p>
+        <p>
+          PortPortal is an independent community project created and operated by
+          Streight Digital Solutions.
+        </p>
+      </footer>
     </main>
   );
 }
