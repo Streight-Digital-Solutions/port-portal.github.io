@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { businesses } from "../data/businesses";
+import BusinessProfile from "./BusinessProfile";
+import cedarForest from "../assets/images/PortPortal_Cedar_Forest_Background.png";
 
 const categories = [
   "All",
@@ -10,67 +13,94 @@ const categories = [
   "Health & Wellness",
 ];
 
-const businesses = [
-  {
-    name: "Featured Local Business",
-    category: "Services",
-    description:
-      "A local business serving the Port Alberni community.",
-    featured: true,
-  },
-  {
-    name: "Example Business",
-    category: "Food & Drink",
-    description:
-      "Local food, coffee, and community.",
-  },
-  {
-    name: "Example Business",
-    category: "Retail",
-    description:
-      "Locally owned shopping and services.",
-  },
-  {
-    name: "Example Business",
-    category: "Trades",
-    description:
-      "Skilled local trades serving the Alberni Valley.",
-  },
-  {
-    name: "Example Business",
-    category: "Professional",
-    description:
-      "Professional services from local businesses.",
-  },
-  {
-    name: "Example Business",
-    category: "Health & Wellness",
-    description:
-      "Health, wellness, and personal care in the community.",
-  },
-];
+
 
 function BusinessScene({ onBack }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+
+  const searchText = search.trim().toLowerCase();
 
   const filteredBusinesses = businesses.filter((business) => {
     const matchesCategory =
       activeCategory === "All" ||
       business.category === activeCategory;
 
-    const searchText = search.toLowerCase();
+    if (!searchText) {
+      return matchesCategory;
+    }
 
-    const matchesSearch =
-      business.name.toLowerCase().includes(searchText) ||
-      business.category.toLowerCase().includes(searchText) ||
-      business.description.toLowerCase().includes(searchText);
+    const searchableText = [
+      business.name,
+      business.category,
+      business.description,
+      business.address,
+      business.phone,
+      business.email,
+      business.website,
+      ...(business.services || []),
+      ...(business.tags || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    const matchesSearch = searchableText.includes(searchText);
 
     return matchesCategory && matchesSearch;
   });
 
+  const featuredBusinesses = businesses
+  .filter((business) => {
+    const isFeatured = business.featured === true;
+
+    const matchesCategory =
+      activeCategory === "All" ||
+      business.category === activeCategory;
+
+    return isFeatured && matchesCategory;
+  })
+  .sort(
+    (a, b) =>
+      (a.featuredOrder ?? 999) -
+      (b.featuredOrder ?? 999)
+  );
+
+  useEffect(() => {
+    setFeaturedIndex(0);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (featuredBusinesses.length <= 1) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setFeaturedIndex(
+        (currentIndex) =>
+          (currentIndex + 1) % featuredBusinesses.length
+      );
+    }, 9000);
+
+    return () => clearInterval(timer);
+  }, [featuredBusinesses.length, activeCategory]);
+
+  if (selectedBusiness) {
+    return (
+      <BusinessProfile
+        business={selectedBusiness}
+        onBack={() => setSelectedBusiness(null)}
+      />
+    );
+  }
+
   return (
-    <section className="business-scene">
+    <section
+      className="business-scene"
+      style={{ "--business-bg": `url(${cedarForest})` }}
+    >
 
       <button
         className="scene-back"
@@ -98,14 +128,27 @@ function BusinessScene({ onBack }) {
         </header>
 
         <div className="business-search">
+
           <input
             type="search"
-            placeholder="Search local businesses..."
+            placeholder="Search businesses, services, places..."
             value={search}
             onChange={(event) =>
               setSearch(event.target.value)
             }
+            aria-label="Search local businesses"
           />
+
+          {search && (
+            <button
+              className="business-search-clear"
+              onClick={() => setSearch("")}
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          )}
+
         </div>
 
         <nav
@@ -131,30 +174,59 @@ function BusinessScene({ onBack }) {
 
         <section className="featured-business">
 
-          <div className="featured-business-art">
-            <span>FEATURED</span>
-          </div>
+          {featuredBusinesses.length > 0 ? (() => {
+            const business = featuredBusinesses[featuredIndex];
 
-          <div className="featured-business-content">
+            return (
+              <>
+                <div className="featured-business-art">
+                  <span>{business.category}</span>
+                </div>
 
-            <span className="business-label">
-              LOCAL SPOTLIGHT
-            </span>
+                <div className="featured-business-content">
 
-            <h2>
-              Put your business in the spotlight.
-            </h2>
+                  <span className="business-label">
+                    FEATURED BUSINESS
+                  </span>
 
-            <p>
-              Featured advertising gives local businesses
-              a prominent place inside PortPortal.
-            </p>
+                  <h2>
+                    {business.name}
+                  </h2>
 
-            <button className="business-action">
-              Learn More
-            </button>
+                  <p>
+                    {business.description}
+                  </p>
 
-          </div>
+                  <button
+                    className="business-action"
+                    onClick={() => setSelectedBusiness(business)}
+                  >
+                    View Business
+                  </button>
+
+                </div>
+              </>
+            );
+          })() : (
+            <div className="featured-business-content">
+              <span className="business-label">
+                LOCAL SPOTLIGHT
+              </span>
+
+              <h2>
+                Put your business in the spotlight.
+              </h2>
+
+              <p>
+                Featured advertising gives local businesses
+                a prominent place inside PortPortal.
+              </p>
+
+              <button className="business-action">
+                Learn More
+              </button>
+            </div>
+          )}
 
         </section>
 
@@ -169,6 +241,18 @@ function BusinessScene({ onBack }) {
             <h2>
               Businesses in Port Alberni
             </h2>
+
+            <p className="business-result-count">
+              {filteredBusinesses.length}{" "}
+              {filteredBusinesses.length === 1
+                ? "business"
+                : "businesses"}
+              {searchText && (
+                <>
+                  {" "}matching "{search}"
+                </>
+              )}
+            </p>
 
           </div>
 
@@ -201,7 +285,10 @@ function BusinessScene({ onBack }) {
                     {business.description}
                   </p>
 
-                  <button className="business-card-button">
+                  <button
+                    className="business-card-button"
+                    onClick={() => setSelectedBusiness(business)}
+                  >
                     View Business
                   </button>
 
